@@ -1,11 +1,19 @@
 .header {
   width: 100%;
-  height: 150px;
+  min-height: 9.375rem;
   background-color: var(--gray-700);
   display: flex;
   justify-content: center;
   align-items: center;
 
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.6875rem;
+  font-weight: bold;
 }
 
 .header img{
@@ -22,9 +30,9 @@
   color: var(--purple-dark)
 }
 
-
+/* ======== Form =========*/
 .formToDo{
-  width: 50rem;
+  width: 46rem;
   margin: 0 auto;
   height: 3.375rem;
 
@@ -36,18 +44,24 @@
 }
 .formToDo input {
   width: 78.8%;
-  height: 100%;
+  line-height: 1.4;
+  padding: 1rem;
   background-color: var(--gray-400);
   color: var(--gray-300);
   font-size: 1rem;
   border-radius: 8px;
   border: none;
+  margin-right: 2%;
 }
+
+.formToDo input { 
+  color: var(--gray-100)
+}
+
 
 .formToDo button {
   width: 20%;
-  height: 100%;
-  font-size: 1rem;
+  padding: 1rem;
   background-color: var(--blue-dark);
   color: var(--gray-100);
   border: none;
@@ -56,16 +70,162 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: 0.1s;
 }
 
-.formToDo button span {
+.formToDo button span { 
   margin-right: 3%;
 }
 
-.containerToDos{}
+.plusCircle {
+  font-size: 1.4rem;
+}
 
-.infoToDos{}
+.formToDo button:hover {
+  background-color: var(--blue);
+}
 
+
+/* ============= Container To Do's ===========*/
+.containerToDos{
+  width: 46rem;
+  /* background-color: rgb(18, 32, 45); */
+  margin: 0 auto;
+  margin-top: 4.0625rem;
+  min-height: 287px;
+
+}
+
+.infoToDos{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.infoToDos > p {
+  font-weight: bold;
+}
+
+.infoToDos p:first-of-type{
+  color: var(--blue);
+}
+
+.infoToDos p:last-of-type{
+  color: var(--purple);
+}
+
+.infoToDos span {
+  background-color: var(--gray-400);
+  padding: 2px 5px;
+  border-radius: 8px;
+  color: var(--gray-100)
+}
+
+
+/* ======================================= To Do's ===================== */
 .toDos{
+  min-height: 244px;
+  border-radius: 8px;
+  border-top: 1px solid var(--gray-300);
+ 
+}
 
+.empty {
+  margin-top:50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-300);
+}
+
+.empty p:first-of-type  {
+  font-weight: bold; 
+  color: var(--gray-200);
+  margin: 5px 0;
+  font-size: var(--font-size-med);
+} 
+
+.empty :last-child {
+  font-size: var(--font-size-min);
+}
+
+
+
+
+
+
+@media (max-width: 768px) {
+  html {
+    font-size: 87.5%;
+  }
+
+  .formToDo, .containerToDos {
+    padding: 0 4%;
+
+    width: calc(90%);
+  }
+
+  .formToDo button span {
+    display: none;
+  }
+}
+
+
+/* ======== Tasks  =========== */
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+}
+
+.task {
+  display: flex;
+  align-items: flex-start;
+  /* justify-content: ; */
+  font-weight:100;
+  background-color: var(--gray-400);
+  padding: 1rem;
+  border-radius: 8px;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.circle {
+  width: 2rem;
+  color: var(--blue);
+  position: absolute;
+  left: 1rem;
+}
+
+.checkCircle {
+  width: 2rem;
+  color: var(--purple-dark);
+  position: absolute;
+  left: 1rem;
+}
+
+.circle:hover {
+  color: var(--blue-dark);
+}
+
+.checkCircle:hover {
+  color: var(--purple);
+}
+
+.trash {
+  width: 2rem;
+  /* align-content: ; */
+  position: absolute;
+  right: 1rem;
+}
+
+.task p {
+  color: var(--gray-100);
+  font-size: var(--font-size-med);
+  margin: 0 2rem;
+}
+
+.task + .task{
+  margin-top: 1rem;
 }
