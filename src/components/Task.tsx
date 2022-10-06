@@ -3,18 +3,22 @@ import styles from './Task.module.css'
 import {useState } from 'react'
 
 type Delete = (content: string) => void
+type ChangeDone = (content: string) => void
+
 interface TaskProps {
+  done: boolean,
   content: string,
-  deleteTask: Delete
+  deleteTask: Delete;
+  changeDone: ChangeDone
 }
 
-export function Task({content, deleteTask}:TaskProps) {
+export function Task({done, content, deleteTask, changeDone}:TaskProps) {
 
-  const [check, setCheck] = useState(false)
+  // const [check, setCheck] = useState(done)
 
-  // event: MouseEventHandler<HTMLButtonElement>
-  function handleCheckTask() {
-    {check ? setCheck(false) : setCheck(true)}
+  //event: MouseEventHandler<HTMLButtonElement>
+  function handleChangeDone() {
+    changeDone(content)
   } 
 
   function handleDelete() {
@@ -23,10 +27,10 @@ export function Task({content, deleteTask}:TaskProps) {
 
   return (
   <div className={styles.task}>
-    {check ? 
+    {done ? 
       <>
         <CheckCircle 
-          onClick={handleCheckTask} 
+          onClick={handleChangeDone} 
           className={styles.checkCircle}
         />
         <p><s>{content}</s></p> 
@@ -34,7 +38,7 @@ export function Task({content, deleteTask}:TaskProps) {
     : 
       <>
         <Circle
-          onClick={handleCheckTask}
+          onClick={handleChangeDone}
           className={styles.circle}/>
         <p>{content}</p>
       </>

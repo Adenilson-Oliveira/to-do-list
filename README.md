@@ -3,13 +3,13 @@
 
 ### Sobre o desafio
 
-##### *** Requisitos do desafio: ***
+##### **Requisitos do desafio:**
 Nesse desafio, você vai desenvolver uma aplicação de controle de tarefas no estilo **to do list**, que contém as seguintes funcionalidades:
 
--[] Adicionar uma nova tarefa
--[] Marcar e desmarcar uma tarefa como concluída
--[] Remover uma tarefa da listagem
--[] Mostrar o progresso de conclusão das tarefas
+- [x] Adicionar uma nova tarefa
+- [x] Marcar e desmarcar uma tarefa como concluída
+- [x] Remover uma tarefa da listagem
+- [x] Mostrar o progresso de conclusão das tarefas
 
 Apesar de serem poucas funcionalidades, você vai precisar relembrar conceitos como:
 
@@ -20,6 +20,8 @@ Apesar de serem poucas funcionalidades, você vai precisar relembrar conceitos c
 - Componentização
 
 
-##### *** Extra: ***
+##### **Extras:**
+Algumas coisas que decide acrescentar ao projeto...
 
 - [x] versão mobile
+- [x] verifição para não ter tarefas duplicadas

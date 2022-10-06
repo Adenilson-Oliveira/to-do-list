@@ -3,38 +3,82 @@ import Logo from './assets/LogoRocket.svg'
 import styles from './App.module.css'
 import { ListChecks, PlusCircle} from 'phosphor-react'
 import { Task } from './components/Task'
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 
 
 function App() {
 
   const [tasks, setTasks] = useState([
-    {content: 'Comprar maçã'},
-    {content: 'Passear com Jack'},
+    {done: false, content: 'Comprar maçã'},
+    {done: true, content: 'Passear com Jack'},
   ])
 
   const [task, setTask] = useState('')
 
+  const [tasksDone, setTasksDone] = useState(0)
+
+  useEffect(() => {
+    let countTasksDone = 0
+    tasks.forEach((el) => {
+      if(el.done) {
+        countTasksDone += 1
+      }
+    })
+    console.log(countTasksDone)
+    setTasksDone(countTasksDone)
+  }, [tasks])
+
+  // useEffect(() => {
+  //   setTasks()
+  // }, [tasks])
+
   function onDeleteTask(taskToDelete: string):void {
-    console.log(taskToDelete)
+    // console.log(taskToDelete)
     setTasks(tasks.filter(task => task.content !== taskToDelete))
   }
 
   function handleAddTask(event: FormEvent) {
     event.preventDefault()
-    setTasks([...tasks, {content: task}])
+    const newTask = {done: false, content: task}
+
+    // console.log(tasks.find(el => newTask.content === el.content))
+
+    if(tasks.some(el => newTask.content === el.content)) {
+      alert('Voçê já possui uma tarefa igual a essa para fazer!')
+      return
+    }
+
+    setTasks([...tasks, newTask])
     setTask('')
   }
 
   function handleCreateNewTask(event: ChangeEvent<HTMLInputElement>) {
     setTask(event.target.value)
-    console.log(task)
+    // console.log(task)
+  }
+
+  // event: ForwardRefExoticComponent<IconProps>
+  function handleChangeDone(content: string) {
+    const taskToChangeState = tasks.find(el => el.content === content)
+    // tasks.indexOf(taskToChangeState)
+
+    if(taskToChangeState) {
+      const indexOfTask = tasks.indexOf(taskToChangeState)
+      setTasks(tasks.map((task, i) => {
+        if(i === indexOfTask){
+          task.done = task.done ? false : true
+        }
+        return task
+      }) )
+    }
   }
 
   return (
     <div>
+
       <header className={styles.header}>
+
         <div className={styles.logo}>
           <img src={Logo} alt="LogoRocket"/>
           <h1>to<span>do</span></h1>
@@ -42,15 +86,17 @@ function App() {
       </header>
 
       <form className={styles.formToDo} onSubmit={handleAddTask}>
-        <input onChange={handleCreateNewTask} type="text" placeholder='Adicione uma nova'/>
+
+        <input value={task} onChange={handleCreateNewTask} type="text" placeholder='Adicione uma nova' required/>
         <button type='submit'><span>Criar</span> <PlusCircle className={styles.plusCircle} /></button>
       </form>
+
 
       <div className={styles.containerToDos}>
 
         <div className={styles.infoToDos}>
-          <p>Tarefas criadas <span>0</span></p>
-          <p>Concluídas <span>0</span></p>
+          <p>Tarefas criadas <span>{tasks.length}</span></p>
+          <p>Concluídas <span>{tasksDone} de {tasks.length}</span></p>
         </div>
         
         <main className={styles.toDos}>
@@ -58,7 +104,7 @@ function App() {
           <div className={styles.tasks}>
 
             {
-              tasks.length >= 1 ? tasks.map((task) => <Task key={task.content} deleteTask={onDeleteTask} content={task.content} />)
+              tasks.length >= 1 ? tasks.map((task) => <Task key={task.content} done={task.done} changeDone={handleChangeDone} deleteTask={onDeleteTask} content={task.content} />)
               :
               <div className={styles.empty}>
                 <ListChecks  size={60}/>
