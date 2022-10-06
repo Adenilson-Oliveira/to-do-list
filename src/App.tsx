@@ -3,7 +3,7 @@ import Logo from './assets/LogoRocket.svg'
 import styles from './App.module.css'
 import { ListChecks, PlusCircle} from 'phosphor-react'
 import { Task } from './components/Task'
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
 
 
@@ -14,11 +14,23 @@ function App() {
     {content: 'Passear com Jack'},
   ])
 
+  const [task, setTask] = useState('')
+
   function onDeleteTask(taskToDelete: string):void {
     console.log(taskToDelete)
     setTasks(tasks.filter(task => task.content !== taskToDelete))
   }
 
+  function handleAddTask(event: FormEvent) {
+    event.preventDefault()
+    setTasks([...tasks, {content: task}])
+    setTask('')
+  }
+
+  function handleCreateNewTask(event: ChangeEvent<HTMLInputElement>) {
+    setTask(event.target.value)
+    console.log(task)
+  }
 
   return (
     <div>
@@ -29,8 +41,8 @@ function App() {
         </div>
       </header>
 
-      <form className={styles.formToDo} onSubmit={(e) => {e.preventDefault()}}>
-        <input type="text" placeholder='Adicione uma nova'/>
+      <form className={styles.formToDo} onSubmit={handleAddTask}>
+        <input onChange={handleCreateNewTask} type="text" placeholder='Adicione uma nova'/>
         <button type='submit'><span>Criar</span> <PlusCircle className={styles.plusCircle} /></button>
       </form>
 
@@ -41,30 +53,23 @@ function App() {
           <p>Concluídas <span>0</span></p>
         </div>
         
-        <div className={styles.toDos}>
+        <main className={styles.toDos}>
           
           <div className={styles.tasks}>
 
             {
-              tasks.length >= 1 ?
-                tasks.map(
-                  (task) => 
-                      <Task 
-                        key={task.content}
-                        deleteTask={onDeleteTask} 
-                        content={task.content} 
-                      />
-                ):
-                <div className={styles.empty}>
-                    <ListChecks  size={60}/>
-                    <p>Você ainda não tem tarefas cadastradas</p>
-                    <p>Crie tarefas e organize seus itens a fazer</p>
-                </div>
+              tasks.length >= 1 ? tasks.map((task) => <Task key={task.content} deleteTask={onDeleteTask} content={task.content} />)
+              :
+              <div className={styles.empty}>
+                <ListChecks  size={60}/>
+                <p>Você ainda não tem tarefas cadastradas</p>
+                <p>Crie tarefas e organize seus itens a fazer</p>
+              </div>
             }
 
           </div>
           
-        </div>
+        </main>
       </div> 
 
     </div>
