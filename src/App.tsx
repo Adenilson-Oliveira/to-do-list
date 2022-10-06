@@ -1,10 +1,24 @@
 import './global.css' 
 import Logo from './assets/LogoRocket.svg'
 import styles from './App.module.css'
-import { CheckCircle, Circle, ListChecks, PlusCircle, Trash} from 'phosphor-react'
+import { ListChecks, PlusCircle} from 'phosphor-react'
 import { Task } from './components/Task'
+import { useState } from 'react'
+
+
 
 function App() {
+
+  const [tasks, setTasks] = useState([
+    {content: 'Comprar maçã'},
+    {content: 'Passear com Jack'},
+  ])
+
+  function onDeleteTask(taskToDelete: string):void {
+    console.log(taskToDelete)
+    setTasks(tasks.filter(task => task.content !== taskToDelete))
+  }
+
 
   return (
     <div>
@@ -31,24 +45,24 @@ function App() {
           
           <div className={styles.tasks}>
 
-            <Task 
-              // check={false}
-              content='Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit'
-            />
-            <Task 
-              // check={true}
-              content='Lorem ipsum dolor sit amalfalçet consectetur adipisicing elit.'
-            />
+            {
+              tasks.length >= 1 ?
+                tasks.map(
+                  (task) => 
+                      <Task 
+                        key={task.content}
+                        deleteTask={onDeleteTask} 
+                        content={task.content} 
+                      />
+                ):
+                <div className={styles.empty}>
+                    <ListChecks  size={60}/>
+                    <p>Você ainda não tem tarefas cadastradas</p>
+                    <p>Crie tarefas e organize seus itens a fazer</p>
+                </div>
+            }
 
           </div>
-          
-          <div className={styles.empty}>
-            <ListChecks  size={60}/>
-            <p>Você ainda não tem tarefas cadastradas</p>
-            <p>Crie tarefas e organize seus itens a fazer</p>
-          </div>
-          
-            
           
         </div>
       </div> 

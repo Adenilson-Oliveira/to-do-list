@@ -28,7 +28,7 @@
 
 .checkCircle {
   width: 2rem;
-  color: var(--purple-dark);
+  color: var(--purple);
   position: absolute;
   left: 1rem;
   transition: 0.1s;
@@ -39,7 +39,7 @@
 }
 
 .checkCircle:hover {
-  color: var(--purple);
+  color: var(--purple-dark);
 }
 
 .trash {

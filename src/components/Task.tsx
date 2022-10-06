@@ -1,12 +1,14 @@
 import { CheckCircle, Circle, Trash } from 'phosphor-react'
 import styles from './Task.module.css'
-import { MouseEventHandler, useState } from 'react'
+import {useState } from 'react'
 
+type Delete = (content: string) => void
 interface TaskProps {
-  content: string
+  content: string,
+  deleteTask: Delete
 }
 
-export function Task({content}:TaskProps) {
+export function Task({content, deleteTask}:TaskProps) {
 
   const [check, setCheck] = useState(false)
 
@@ -15,7 +17,9 @@ export function Task({content}:TaskProps) {
     {check ? setCheck(false) : setCheck(true)}
   } 
 
-
+  function handleDelete() {
+    deleteTask(content)
+  }
 
   return (
   <div className={styles.task}>
@@ -36,7 +40,9 @@ export function Task({content}:TaskProps) {
       </>
     }
 
-    <Trash className={styles.trash}/>
+    <Trash
+      onClick={handleDelete} 
+      className={styles.trash}/>
   </div>
   )
 }
