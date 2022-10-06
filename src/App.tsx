@@ -2,6 +2,7 @@ import './global.css'
 import Logo from './assets/LogoRocket.svg'
 import styles from './App.module.css'
 import { CheckCircle, Circle, ListChecks, PlusCircle, Trash} from 'phosphor-react'
+import { Task } from './components/Task'
 
 function App() {
 
@@ -30,29 +31,14 @@ function App() {
           
           <div className={styles.tasks}>
 
-            <div className={styles.task}>
-              <CheckCircle className={styles.checkCircle}/>
-              
-              {/* <Circle className={styles.circle}/> */}
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi consequatur delectus modi quas distinctio error quis.</p>
-              <Trash className={styles.trash}/>
-            </div>
-
-            <div className={styles.task}>
-              <CheckCircle className={styles.checkCircle}/>
-              
-              {/* <Circle className={styles.circle}/> */}
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-              <Trash className={styles.trash}/>
-            </div>
-
-            <div className={styles.task}>
-              {/* <CheckCircle className={styles.checkCircle}/> */}
-              
-              <Circle className={styles.circle}/>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi consequatur delectus modi quas distinctio error quis.</p>
-              <Trash className={styles.trash}/>
-            </div>
+            <Task 
+              // check={false}
+              content='Lorem ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit'
+            />
+            <Task 
+              // check={true}
+              content='Lorem ipsum dolor sit amalfalçet consectetur adipisicing elit.'
+            />
 
           </div>
           
