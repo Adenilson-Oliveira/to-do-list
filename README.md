@@ -1,7 +1,10 @@
-#Sobre o desafio
+# ![Logo](/Desafio%2001%20-%20Praticando%20os%20conceitos/src/assets/LogoRocket.svg) To Do List
 
 
-Nesse desafio, você vai desenvolver uma aplicação de controle de tarefas no estilo **to-do list**, que contém as seguintes funcionalidades:
+### Sobre o desafio
+
+##### *** Requisitos do desafio: ***
+Nesse desafio, você vai desenvolver uma aplicação de controle de tarefas no estilo **to do list**, que contém as seguintes funcionalidades:
 
 -[] Adicionar uma nova tarefa
 -[] Marcar e desmarcar uma tarefa como concluída
@@ -15,3 +18,8 @@ Apesar de serem poucas funcionalidades, você vai precisar relembrar conceitos c
 - Listas e chaves no ReactJS
 - Propriedades
 - Componentização
+
+
+##### *** Extra: ***
+
+- [x] versão mobile
