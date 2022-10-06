@@ -1,4 +1,4 @@
-# ![Logo](/Desafio%2001%20-%20Praticando%20os%20conceitos/src/assets/LogoRocket.svg) To Do List
+# ![Logo](/src/assets/LogoRocket.svg) To Do List
 
 
 ### Sobre o desafio
